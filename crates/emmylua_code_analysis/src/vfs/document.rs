@@ -38,7 +38,11 @@ impl<'a> LuaDocument<'a> {
     }
 
     pub fn get_uri(&self) -> Uri {
-        file_path_to_uri(self.path).expect("path is always absolute")
+        let true_path = match self.path.canonicalize() {
+            Ok(tp) => tp,
+            Err(_) => self.path.to_path_buf(),
+        };
+        file_path_to_uri(&true_path).expect("path is always absolute")
     }
 
     pub fn get_file_path(&self) -> &PathBuf {
