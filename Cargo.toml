@@ -1,9 +1,6 @@
 [workspace]
 resolver = "2"
-members = [
-    "crates/*",
-    "tools/*",
-]
+members = ["crates/*", "tools/*"]
 
 [workspace.dependencies]
 # local
@@ -62,7 +59,7 @@ reqwest = { version = "0.13.1", default-features = false, features = [
   "charset",
   "system-proxy",
   "native-tls-vendored",
-]}
+] }
 similar = { version = "2.7.0", features = ["inline"] }
 hashbrown = "0.16.1"
 
@@ -129,3 +126,7 @@ manual_let_else = "allow"
 missing_errors_doc = "allow"
 missing_panics_doc = "allow"
 undocumented_unsafe_blocks = "allow"
+
+[profile.release]
+lto = true
+strip = true
