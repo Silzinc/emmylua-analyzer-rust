@@ -35,13 +35,18 @@
           };
 
         devShells.default = pkgs.mkShell {
-          buildInputs = (with pkgs; [
-            rust-analyzer
-            clippy
-            rustfmt
-          ])
-          ++ self.packages.${system}.default.buildInputs
-          ++ self.packages.${system}.default.nativeBuildInputs;
+          packages =
+            (with pkgs; [
+              rust-analyzer
+              clippy
+              rustfmt
+
+              clang
+              llvmPackages.bintools
+              glib
+            ])
+            ++ self.packages.${system}.default.buildInputs
+            ++ self.packages.${system}.default.nativeBuildInputs;
         };
       }
     );

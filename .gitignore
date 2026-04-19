@@ -7,3 +7,6 @@ dhat-heap.json
 .claude
 .codex
 openspec
+
+# Nix
+/.direnv
